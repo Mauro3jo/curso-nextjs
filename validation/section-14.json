@@ -1,0 +1,51 @@
+{
+  "section": 14,
+  "app": "teslo-shop",
+  "source_commit": "02aa88b51945ace0b4fb6d81c30634d2e5e32653",
+  "source_ref": "fin-seccion-14",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 24.8,
+      "log": "14-install.log"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 5.8,
+      "log": "14-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 0,
+        "moderate": 5,
+        "high": 11,
+        "critical": 1,
+        "total": 17
+      }
+    },
+    "lint": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 7.0,
+      "log": "14-lint.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 1.9,
+      "log": "14-types.log"
+    },
+    "build": {
+      "status": "NOT_RUN",
+      "reason": "Backend builds may evaluate routes and database queries. No database, seed, authentication or payment execution is authorized in this validation."
+    }
+  }
+}
