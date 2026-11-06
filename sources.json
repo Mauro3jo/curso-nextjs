@@ -38,5 +38,13 @@
     "ref": "a00d14c",
     "commit": "a00d14ce3cc8c94919801d208b6df3c94e827edd",
     "files_verified": 36
+  },
+  {
+    "section": 7,
+    "app": "my-dashboard",
+    "source": "https://github.com/Klerith/next-my-dashboard",
+    "ref": "fin-seccion-7",
+    "commit": "742ab2b1a545a9eb02ef8263d7eabf1cdc56ec8d",
+    "files_verified": 43
   }
 ]

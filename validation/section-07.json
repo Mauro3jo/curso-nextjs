@@ -1,0 +1,53 @@
+{
+  "section": 7,
+  "app": "my-dashboard",
+  "source_commit": "742ab2b1a545a9eb02ef8263d7eabf1cdc56ec8d",
+  "source_ref": "fin-seccion-7",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 26.0,
+      "log": "07-install.log"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 6.4,
+      "log": "07-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 0,
+        "moderate": 6,
+        "high": 13,
+        "critical": 1,
+        "total": 20
+      }
+    },
+    "lint": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 6.9,
+      "log": "07-lint.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 2.1,
+      "log": "07-types.log"
+    },
+    "build": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 40.7,
+      "log": "07-build.log"
+    }
+  }
+}
