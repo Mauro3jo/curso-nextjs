@@ -1,21 +1,46 @@
-# Validación de la sección 2
+# Validación por sección
 
-Fecha: 2026-11-06. Entorno utilizado: Windows, Node.js 23.4.0 y npm 10.9.2. Esto registra el entorno de la prueba; no prescribe una versión de Node para despliegue.
+Fecha: 2026-11-06. Entorno: Windows, Node.js 23.4.0 y npm 10.9.2. Estas versiones registran el entorno utilizado, no una recomendación de despliegue.
 
-Sólo se validó `apps/first-steps` en la referencia del instructor `aba9a260f3379fd8a0552b7a54c500ba9f783673`. Las aplicaciones posteriores no forman parte de esta rama.
+Todas las importaciones se comparan con los árboles Git originales. Cada sección tiene un commit propio con atribución y referencia exacta. Este control de integridad es independiente de las pruebas de funcionamiento.
 
-| Comprobación | Resultado |
-| --- | --- |
-| `npm ci --ignore-scripts --no-audit --no-fund` | PASS: 352 paquetes instalados; scripts de instalación deshabilitados |
-| `npm run lint` | PASS: sin advertencias ni errores de ESLint |
-| `npm run build` | PASS: compilación, chequeo de tipos y generación estática |
-| `python scripts/check-static-pages.py` desde la raíz | PASS: cuatro páginas, enlaces de navegación y enlace activo correcto |
-| `npm audit --json` | FAIL de seguridad: 20 paquetes afectados; 6 moderados, 13 altos y 1 crítico |
+| Sección | Aplicación | Instalación | Lint | Tipos | Build | Paquetes afectados según npm audit |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2 | First Steps | PASS | PASS | PASS | PASS | 20 |
+| 3 | first-steps | REUSED | PASS | PASS | PASS | 20 |
+| 4 | my-dashboard | PASS | PASS | PASS | PASS | 20 |
+| 5 | my-dashboard | REUSED | PASS | PASS | PASS | 20 |
+| 6 | my-dashboard | REUSED | PASS | PASS | PASS | 20 |
+| 7 | my-dashboard | PASS | PASS | PASS | PASS | 20 |
+| 8 | my-dashboard | REUSED | PASS | PASS | PASS | 20 |
+| 9 | admin-todos | PASS | PASS | PASS | NOT_RUN | 20 |
+| 10 | admin-todos | PASS | PASS | PASS | NOT_RUN | 18 |
+| 11 | admin-todos | PASS | PASS | PASS | NOT_RUN | 18 |
+| 12 | admin-todos | PASS | PASS | PASS | NOT_RUN | 20 |
+| 13 | admin-todos | PASS | PASS | PASS | NOT_RUN | 25 |
+| 14 | teslo-shop | PASS | FAIL | PASS | NOT_RUN | 17 |
+| 15 | teslo-shop | PASS | FAIL | PASS | NOT_RUN | 18 |
+| 16 | teslo-shop | PASS | FAIL | PASS | NOT_RUN | 19 |
+| 17 | teslo-shop | REUSED | PASS | PASS | NOT_RUN | 19 |
+| 18 | teslo-shop | REUSED | PASS | PASS | NOT_RUN | 19 |
+| 19 | teslo-shop | REUSED | PASS | PASS | NOT_RUN | 19 |
+| 20 | teslo-shop | PASS | PASS | PASS | NOT_RUN | 24 |
+| 21 | teslo-shop | PASS | PASS | PASS | NOT_RUN | 24 |
+| 22 | teslo-shop | REUSED | PASS | PASS | NOT_RUN | 24 |
+| 23 | teslo-shop | PASS | PASS | PASS | NOT_RUN | 24 |
+| 24 | teslo-shop | PASS | PASS | PASS | NOT_RUN | 26 |
+| 25 | teslo-shop | REUSED | PASS | PASS | NOT_RUN | 26 |
 
-La auditoría incluye dependencias de desarrollo y transitivas. Los recuentos son de paquetes afectados según npm en esta consulta, no de vulnerabilidades explotables demostradas en esta aplicación. `next` aparece con severidad crítica. No se ejecutó `npm audit fix` ni se cambiaron versiones.
+`REUSED` indica que el lockfile no cambió y se reutilizó la instalación de la etapa inmediatamente anterior. `NOT_RUN` significa que la prueba no se ejecutó, no que haya pasado. Los detalles de la sección 2 están en `validation/section-02.md`; las demás etapas están en `validation/section-NN.json`. Los errores y tiempos agotados tienen archivos `section-NN-failures.md`.
 
-El build emitió avisos por datos antiguos de Browserslist y por la API de Node `punycode` obsoleta. No impidieron la compilación. La telemetría de Next se deshabilitó durante lint y build.
+## Qué se ejecutó
 
-No se inició un servidor, no se probaron interacciones en un navegador, no se ejecutaron contenedores y no se accedió a bases de datos. La comprobación del HTML generado no sustituye una prueba de navegación e hidratación en navegador. No hubo publicación.
+- Dependencias instaladas con `npm ci --ignore-scripts --no-audit --no-fund`; auditoría consultada por separado, sin `audit fix`.
+- Lint y TypeScript con `--noEmit --incremental false` por etapa.
+- Validación y generación oficial de Prisma cuando existe un esquema, con una URL ficticia en `127.0.0.1:1`. No se ejecutaron consultas, migraciones, semillas ni comandos `db push`.
+- Builds para First Steps y Dashboard. Los builds de AdminTodos y Teslo se omiten porque pueden evaluar consultas o rutas destructivas durante la generación.
+- Comprobación del HTML generado de First Steps: páginas principales, navegación y enlaces activos.
 
-Antes de ejecutar un servidor accesible o desplegar, actualizar las dependencias a versiones soportadas y corregidas y repetir las verificaciones. La siguiente sección del curso es la 3 (Docker y despliegue); conservar la corrección de dependencias como un commit separado si se realiza antes.
+No se inició un servidor ni se usaron bases de datos, autenticación externa, PayPal o Cloudinary. Los builds de Dashboard pueden consultar la API pública de Pokémon. No se realizaron pruebas interactivas en un navegador ni una certificación de seguridad. Los resultados fallidos y las pruebas omitidas están registrados por etapa.
+
+Los conteos de npm audit incluyen dependencias de desarrollo y transitivas y cambian con los avisos del registro. Representan paquetes afectados, no explotaciones demostradas. Ver `SECURITY_REVIEW.md` para los bloqueos previos a despliegue.

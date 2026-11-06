@@ -1,16 +1,29 @@
 # Next.js: proyectos del curso
 
-Ejercicios del curso de Next.js de Fernando Herrera y DevTalles, organizados por secciones y aplicaciones independientes.
+Ejercicios de Next.js del curso de Fernando Herrera y DevTalles, organizados en cuatro aplicaciones independientes y commits por sección.
 
-## Sección actual: 2
+| Aplicación | Secciones disponibles | Contenido |
+| --- | --- | --- |
+| `apps/first-steps` | 2–3 | Rutas, layouts, navegación y Docker |
+| `apps/my-dashboard` | 4–8 | Pokémon, renderizado, Redux y favoritos |
+| `apps/admin-todos` | 9–13 | API, Prisma, Server Actions, cookies y autenticación |
+| `apps/teslo-shop` | 14–25 | Catálogo, carrito, usuarios, pedidos, pagos y administración |
 
-`apps/first-steps` contiene las primeras rutas, layouts anidados, navegación y enlaces activos. El código de referencia procede de `Klerith/next-first-steps-dev`, rama `fin-seccion-2`; su commit exacto está en `sources.json`.
+Cada aplicación conserva sus dependencias, lockfile y configuración. First Steps de las secciones 2 y 3 es una misma aplicación en dos etapas. Las cuatro aplicaciones comparten el repositorio, pero no una base de datos ni una instalación de dependencias.
 
-Cada etapa se importa y verifica por separado antes de continuar. Los commits identifican el material del instructor y los cambios de esta colección.
+## Recorrido
 
-## Validar esta etapa
+Cada commit de importación identifica la sección, el repositorio original y su SHA. `sources.json` permite localizar el punto de control exacto. Los commits registran importaciones y validaciones actuales; no reproducen fechas ni autoría de trabajo perdido en otro equipo.
 
-Desde `apps/first-steps`:
+Se incorporaron las referencias disponibles de las secciones 2–24 y el `main` de Teslo posterior a la integración identificada como sección 25. No hay fuentes verificadas para las secciones 26 y 27 del temario actual. La introducción no tiene un proyecto independiente.
+
+## Validación
+
+Consultar [VALIDATION.md](VALIDATION.md) para los resultados por sección y [SECURITY_REVIEW.md](SECURITY_REVIEW.md) antes de ejecutar aplicaciones. Hay diferencias entre importar correctamente una etapa, pasar sus comprobaciones y poder desplegarla de forma segura.
+
+Las dependencias históricas tienen avisos de seguridad. No iniciar servidores accesibles ni desplegar estos snapshots sin corregir dependencias y autorización. Los builds con base de datos, los pagos y las semillas no se ejecutaron durante esta preparación.
+
+Para revisar First Steps, desde `apps/first-steps`:
 
 ```sh
 npm ci --ignore-scripts
@@ -18,21 +31,23 @@ npm run lint
 npm run build
 ```
 
-Estas versiones educativas usan Next.js 13.4.4 y requieren revisión de seguridad antes de ejecutarse en un servidor accesible o desplegarse. El build puede necesitar red para descargar la fuente Inter. Consultar `REVIEW.md` para los límites y requisitos de las etapas posteriores.
-
-Resultados de esta etapa: [VALIDATION.md](VALIDATION.md). El chequeo de las páginas generadas se ejecuta desde la raíz con `python scripts/check-static-pages.py` después del build.
-
-## Recorrido previsto
-
-| Etapas | Aplicación | Contenido |
-| --- | --- | --- |
-| 2–3 | First Steps | Rutas, layouts y preparación para Docker |
-| 4–8 | My Dashboard | Pokémon, renderizado, Redux y favoritos |
-| 9 | AdminTodos | API de tareas con Prisma |
-| 14–16 | Teslo Shop | Pantallas de tienda y PostgreSQL |
-
-Las etapas posteriores aún no forman parte de esta rama. Cada aplicación conservará sus dependencias, lockfile y configuración, sin compartir bases de datos.
+Después del build, desde la raíz: `python scripts/check-static-pages.py`. El build puede descargar la fuente Inter. Los proyectos con Prisma necesitan preparación adicional; ver la revisión y los resultados por etapa antes de ejecutarlos.
 
 ## Fuentes
 
-Los repositorios y la atribución se detallan en [SOURCES.md](SOURCES.md). Los commits de importación tienen fechas actuales y no representan la recuperación del historial de otro equipo. La publicación está pendiente de aclarar los permisos de redistribución del material y elegir la visibilidad.
+Código de referencia de Fernando Herrera / DevTalles. Repositorios y decisiones de selección en [SOURCES.md](SOURCES.md). Se conservan los README originales de cada aplicación. No se asigna una nueva licencia al código del instructor.
+
+La publicación está pendiente de aclarar el permiso de redistribución y elegir nombre y visibilidad del repositorio. No hay remoto configurado ni contenido enviado a GitHub.
+
+## Configuración local
+
+Una vez resueltos los bloqueos de seguridad y preparadas las dependencias de cada aplicación, los comandos de la raíz usan puertos separados y escucha en loopback:
+
+| Aplicación | Comando | Puerto HTTP | PostgreSQL local |
+| --- | --- | --- | --- |
+| First Steps | `npm run dev:first-steps` | 3001 | No utiliza |
+| Dashboard | `npm run dev:my-dashboard` | 3002 | No utiliza |
+| AdminTodos | `npm run dev:admin-todos` | 3003 | 5433 |
+| Teslo | `npm run dev:teslo-shop` | 3004 | 5434 |
+
+Los Compose y las plantillas de conexión coinciden en esos puertos. Cada base usa su propio directorio de datos. El build final de Teslo genera Prisma y compila; las migraciones quedan separadas en `prisma:deploy`. La configuración se validó con `docker compose config`; no se iniciaron servicios ni se ejecutaron migraciones. Ver `validation/local-configuration.json`.

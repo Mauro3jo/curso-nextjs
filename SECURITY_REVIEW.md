@@ -1,0 +1,23 @@
+# Revisión estática de las fuentes del curso
+
+Revisión local, sin servidor, base de datos, credenciales, pagos ni cargas a servicios externos. Los hallazgos describen el código de referencia; su explotación en una aplicación desplegada no se comprobó. Se conservaron los puntos de control del instructor y se registraron las comprobaciones por separado.
+
+## Bloqueos antes de desplegar
+
+1. **AdminTodos: semilla destructiva sin autenticación.** En `fin-seccion-13`, `src/app/api/seed/route.ts:5–8` exporta GET y borra tareas y usuarios. Los primeros checkpoints también exponen una semilla destructiva. Quitar esa ruta del entorno desplegado o reemplazarla por una herramienta explícita limitada a una base desechable; nunca invocarla en una base existente.
+2. **AdminTodos: listado de tareas sin sesión ni filtro de propietario.** En `fin-seccion-13`, `src/app/api/todos/route.ts:7–26`, GET llama a `findMany` con `take` y `skip`, sin identificar usuario ni filtrar `userId`. POST, DELETE y la ruta por ID sí tienen controles parciales, por lo que no basta con revisar sólo esas operaciones. Derivar el usuario de sesión, filtrar por él y limitar la paginación.
+3. **Teslo: direcciones controladas por un identificador recibido.** En el snapshot `1cfdcf25a88ac49f95fe8dddd1fa8214aaa5d2ae`, `src/actions/address/get-user-address.ts:7`, `set-user-address.ts:6` y `delete-user-address.ts:7` aceptan `userId` sin verificar sesión o propiedad dentro de la acción. Derivar la identidad de la sesión y autorizar en el servidor antes de leer o modificar direcciones.
+4. **Teslo: mutaciones administrativas sin autorización en la acción.** `src/actions/product/create-update-product.ts:37` y `delete-product-image.ts:9` alcanzan Prisma y Cloudinary sin exigir un administrador. El layout administrativo comprueba rol al renderizar, pero esas funciones exportadas con `use server` necesitan su propia autorización. Validar además tamaño, cantidad y tipo de archivos y resolver las imágenes a borrar a partir del registro autorizado, en lugar de confiar en una URL recibida.
+5. **Teslo: actualización de transacción y validación de pago incompletas.** `src/actions/payments/set-transaction-id.ts:6–12` actualiza una orden por un ID recibido sin comprobar sesión ni propiedad. `paypal-check-payment.ts:7–45` verifica estado COMPLETED y usa `invoice_id`, pero no compara explícitamente importe, moneda, receptor y correspondencia con la orden local antes de marcarla pagada. Completar esas verificaciones y la protección frente a reutilización antes de utilizar pagos reales. No se contactó PayPal durante esta revisión.
+6. **Dependencias antiguas.** Los checkpoints conservan versiones históricas del curso; las auditorías por sección registran los avisos de npm. Compilar o pasar lint no elimina esos riesgos. La actualización debe hacerse como trabajo explícito, con pruebas y commits separados.
+7. **Teslo: el build final del instructor ejecuta migraciones.** En el snapshot de `main`, `package.json` define `build` como `npm run prisma:deploy && next build`; `prisma:deploy` incluye `prisma migrate deploy`. No se ejecutó ese build. En el commit posterior de configuración local se separa la compilación de la migración: `build` genera el cliente Prisma y compila; la migración queda como un comando explícito que no se invocó.
+
+La documentación oficial explica que las Server Actions exportadas son accesibles mediante solicitudes POST y que necesitan controles de autorización propios: https://nextjs.org/docs/app/guides/data-security . Esta revisión no afirma que se haya probado la invocación remota de cada acción.
+
+## Configuración y límites
+
+- Los Compose originales publicaban PostgreSQL en 5432. El ajuste local usa `127.0.0.1:5433` para AdminTodos y `127.0.0.1:5434` para Teslo, elimina el nombre global de contenedor y conserva directorios de datos separados. Se comprobó el renderizado de Compose, sin iniciar servicios.
+- No se cargaron archivos `.env` de aplicación. Prisma se valida y genera con una URL ficticia en `127.0.0.1:1`, sin ejecutar migraciones, consultas ni semillas.
+- Los builds de aplicaciones con base de datos se omiten porque pueden evaluar rutas o consultas durante la generación. Lint, tipos y validación/generación de Prisma tienen resultados separados.
+- Las comprobaciones por nombre de archivos no constituyen una certificación completa de ausencia de secretos. Las plantillas observadas son ejemplos; no deben reutilizarse como credenciales reales.
+- No se encontró una licencia explícita que aclare redistribución. No se publicó el conjunto ni se cambió la visibilidad de ningún repositorio.
