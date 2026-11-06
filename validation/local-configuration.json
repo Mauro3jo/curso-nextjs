@@ -1,0 +1,27 @@
+{
+  "checks": "PASS",
+  "database_configs": [
+    {
+      "app": "admin-todos",
+      "published_port": 5433,
+      "host_ip": "127.0.0.1",
+      "bind_mounts": [
+        "apps\\admin-todos\\postgres"
+      ]
+    },
+    {
+      "app": "teslo-shop",
+      "published_port": 5434,
+      "host_ip": "127.0.0.1",
+      "bind_mounts": [
+        "apps\\teslo-shop\\postgres"
+      ]
+    }
+  ],
+  "servers_started": false,
+  "containers_started": false,
+  "database_connections": false,
+  "dependency_versions_changed": false,
+  "teslo_build_migration_removed": true,
+  "teslo_backend_build_executed": false
+}
