@@ -150,5 +150,13 @@
     "ref": "fin-seccion-20",
     "commit": "deaf032e2fb7b84e21d0f8b1d912ec81f1be9af9",
     "files_verified": 344
+  },
+  {
+    "section": 21,
+    "app": "teslo-shop",
+    "source": "https://github.com/DevTalles-corp/next-teslo-shop",
+    "ref": "fin-seccion-21",
+    "commit": "7f25879e67047fb9dba749f28dff7bea6a48ddcd",
+    "files_verified": 356
   }
 ]
