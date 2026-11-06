@@ -1,0 +1,63 @@
+{
+  "section": 13,
+  "app": "admin-todos",
+  "source_commit": "b688e45754e7a6374d4b15390ed2906c0fdf1731",
+  "source_ref": "fin-seccion-13",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 27.8,
+      "log": "13-install.log"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 6.8,
+      "log": "13-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 2,
+        "moderate": 7,
+        "high": 12,
+        "critical": 4,
+        "total": 25
+      }
+    },
+    "lint": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 7.2,
+      "log": "13-lint.log"
+    },
+    "prisma_validate": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 2.2,
+      "log": "13-prisma-validate.log"
+    },
+    "prisma_generate": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 0.9,
+      "log": "13-prisma-generate.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 2.4,
+      "log": "13-types.log"
+    },
+    "build": {
+      "status": "NOT_RUN",
+      "reason": "Backend builds may evaluate routes and database queries. No database, seed, authentication or payment execution is authorized in this validation."
+    }
+  }
+}

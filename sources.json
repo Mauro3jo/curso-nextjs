@@ -86,5 +86,13 @@
     "ref": "fin-seccion-12",
     "commit": "f9fe5e1b3d5e3624aef08affe17c27ccc5b8e3ea",
     "files_verified": 59
+  },
+  {
+    "section": 13,
+    "app": "admin-todos",
+    "source": "https://github.com/Klerith/next-admin-todos",
+    "ref": "fin-seccion-13",
+    "commit": "b688e45754e7a6374d4b15390ed2906c0fdf1731",
+    "files_verified": 71
   }
 ]
