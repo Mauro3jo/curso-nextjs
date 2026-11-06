@@ -20,4 +20,4 @@ La documentación oficial explica que las Server Actions exportadas son accesibl
 - No se cargaron archivos `.env` de aplicación. Prisma se valida y genera con una URL ficticia en `127.0.0.1:1`, sin ejecutar migraciones, consultas ni semillas.
 - Los builds de aplicaciones con base de datos se omiten porque pueden evaluar rutas o consultas durante la generación. Lint, tipos y validación/generación de Prisma tienen resultados separados.
 - Las comprobaciones por nombre de archivos no constituyen una certificación completa de ausencia de secretos. Las plantillas observadas son ejemplos; no deben reutilizarse como credenciales reales.
-- No se encontró una licencia explícita que aclare redistribución. No se publicó el conjunto ni se cambió la visibilidad de ningún repositorio.
+- No se encontró una licencia explícita en las fuentes. Se conserva la atribución al instructor y no se asigna una licencia propia a su código.

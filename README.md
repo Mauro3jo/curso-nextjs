@@ -37,7 +37,7 @@ Después del build, desde la raíz: `python scripts/check-static-pages.py`. El b
 
 Código de referencia de Fernando Herrera / DevTalles. Repositorios y decisiones de selección en [SOURCES.md](SOURCES.md). Se conservan los README originales de cada aplicación. No se asigna una nueva licencia al código del instructor.
 
-La publicación está pendiente de aclarar el permiso de redistribución y elegir nombre y visibilidad del repositorio. No hay remoto configurado ni contenido enviado a GitHub.
+Repositorio de prácticas: [Mauro3jo/curso-nextjs](https://github.com/Mauro3jo/curso-nextjs). Los puntos de control conservan la atribución a las fuentes originales y los cambios locales se registran en commits separados.
 
 ## Configuración local
 

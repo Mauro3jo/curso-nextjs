@@ -19,11 +19,11 @@ Curso: [Next.js: El framework de React para producción](https://www.udemy.com/c
 - Teslo no conserva una rama final llamada `fin-seccion-25`, pero `main` contiene la integración `b4db4ce` ("Merge branch 'fin-seccion-25'") y correcciones posteriores. Se importó su snapshot `1cfdcf25a88ac49f95fe8dddd1fa8214aaa5d2ae` como esa etapa final disponible. `fin-seccion-25-dev` sigue apuntando a la misma referencia que la 24 y no se cuenta como una nueva etapa terminada.
 - No se incluyeron como cierres las ramas `dev`, ni se inventaron snapshots para las secciones 26 y 27 del temario actual.
 
-## Permisos pendientes
+## Licencia y atribución
 
-No se encontró un archivo LICENSE, LICENCE, COPYING o NOTICE en las referencias ni en el historial descargado de esos nombres. No se asigna una licencia nueva al código del instructor. La disponibilidad pública no aclara por sí sola el permiso para redistribuir este conjunto; ese permiso sigue pendiente antes de publicar, incluso en un destino privado.
+No se encontró un archivo LICENSE, LICENCE, COPYING o NOTICE en las referencias ni en el historial descargado de esos nombres. Se mantienen la atribución y los enlaces originales; no se asigna una licencia nueva al código del instructor ni se afirma que sus derechos se hayan transferido. Consultar las condiciones de las fuentes originales antes de reutilizar este material en otros proyectos.
 
-La cuenta GitHub verificada es `Mauro3jo`. La CLI funciona con acceso de red habilitado; el diagnóstico anterior de credencial inválida ocurrió bajo restricción de red y no se confirmó. No se renovaron ni copiaron tokens. No se creó un repositorio remoto ni se hizo push.
+La cuenta GitHub verificada es `Mauro3jo` y el destino es `Mauro3jo/curso-nextjs`, siguiendo la organización pública de sus otros repositorios de cursos. La CLI funciona con acceso de red habilitado; el diagnóstico anterior de credencial inválida ocurrió bajo restricción de red y no se confirmó. No se renovaron ni copiaron tokens.
 
 La página pública de Udemy confirmó el curso y parte de su temario. Los adjuntos de la cuenta siguen sin verificar: Computer Use detuvo Edge porque no pudo determinar la URL actual con suficiente confianza. No se eludió la restricción.
 
