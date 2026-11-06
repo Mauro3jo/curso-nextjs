@@ -6,7 +6,7 @@
 - Referencias y SHA de cada etapa registrados en `sources.json`.
 - Archivos importados comparados byte a byte con su snapshot Git antes de cada commit.
 - Sin `.env` real o claves privadas entre los archivos de las referencias solicitadas. Esta comprobación por nombres no sustituye un análisis completo de secretos.
-- No se ejecutó código del curso, ninguna semilla ni contenedores; no se modificaron bases existentes.
+- En la sección 2 se instalaron dependencias sin scripts de instalación y se ejecutaron lint, build y comprobaciones del HTML generado: ver `VALIDATION.md`. No se inició un servidor, ninguna semilla ni contenedores; no se modificaron bases existentes.
 
 ## Antes de ejecutar
 

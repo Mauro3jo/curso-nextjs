@@ -1,20 +1,38 @@
 # Next.js: proyectos del curso
 
-Ejercicios de Next.js organizados por proyecto: navegación y layouts, renderizado y estado global, API con Prisma y una tienda con PostgreSQL.
+Ejercicios del curso de Next.js de Fernando Herrera y DevTalles, organizados por secciones y aplicaciones independientes.
 
-| Carpeta | Contenido | Punto de control |
+## Sección actual: 2
+
+`apps/first-steps` contiene las primeras rutas, layouts anidados, navegación y enlaces activos. El código de referencia procede de `Klerith/next-first-steps-dev`, rama `fin-seccion-2`; su commit exacto está en `sources.json`.
+
+Cada etapa se importa y verifica por separado antes de continuar. Los commits identifican el material del instructor y los cambios de esta colección.
+
+## Validar esta etapa
+
+Desde `apps/first-steps`:
+
+```sh
+npm ci --ignore-scripts
+npm run lint
+npm run build
+```
+
+Estas versiones educativas usan Next.js 13.4.4 y requieren revisión de seguridad antes de ejecutarse en un servidor accesible o desplegarse. El build puede necesitar red para descargar la fuente Inter. Consultar `REVIEW.md` para los límites y requisitos de las etapas posteriores.
+
+Resultados de esta etapa: [VALIDATION.md](VALIDATION.md). El chequeo de las páginas generadas se ejecuta desde la raíz con `python scripts/check-static-pages.py` después del build.
+
+## Recorrido previsto
+
+| Etapas | Aplicación | Contenido |
 | --- | --- | --- |
-| `apps/first-steps` | Rutas, layouts, navegación y Docker | Sección 3 |
-| `apps/my-dashboard` | Pokémon, renderizado, Redux y favoritos | Sección 8 |
-| `apps/admin-todos` | API de tareas y Prisma | Sección 9 |
-| `apps/teslo-shop` | Tienda, pantallas y base de datos | Sección 16 |
+| 2–3 | First Steps | Rutas, layouts y preparación para Docker |
+| 4–8 | My Dashboard | Pokémon, renderizado, Redux y favoritos |
+| 9 | AdminTodos | API de tareas con Prisma |
+| 14–16 | Teslo Shop | Pantallas de tienda y PostgreSQL |
 
-Cada aplicación conserva su `package.json`, lockfile y README. Instalar y ejecutar desde su carpeta; no hay dependencias compartidas ni instalación global del conjunto. Los dos repositorios First Steps representan la continuación de una misma aplicación.
+Las etapas posteriores aún no forman parte de esta rama. Cada aplicación conservará sus dependencias, lockfile y configuración, sin compartir bases de datos.
 
-## Estado
+## Fuentes
 
-Colección local de versiones educativas del curso de Fernando Herrera / DevTalles. El código del instructor se identifica en [SOURCES.md](SOURCES.md) y `sources.json`. Los commits actuales registran importaciones de puntos de control, no recuperan el historial de un equipo perdido ni representan trabajo original del instructor como propio.
-
-Las importaciones se verificaron contra los archivos originales. Aún no se ha certificado la ejecución, compilación o seguridad de las aplicaciones. Antes de iniciarlas, revisar [REVIEW.md](REVIEW.md): hay dependencias antiguas, una ruta de semilla que elimina tareas y puertos de base de datos que coinciden.
-
-No desplegar estas versiones directamente. No incluir archivos `.env`, credenciales reales o datos personales. La publicación queda pendiente de aclarar los permisos de reutilización del material y elegir la visibilidad del repositorio.
+Los repositorios y la atribución se detallan en [SOURCES.md](SOURCES.md). Los commits de importación tienen fechas actuales y no representan la recuperación del historial de otro equipo. La publicación está pendiente de aclarar los permisos de redistribución del material y elegir la visibilidad.

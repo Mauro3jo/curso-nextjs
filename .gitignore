@@ -6,3 +6,4 @@
 !**/.env.example
 **/postgres/
 **/*.tsbuildinfo
+**/.npm-cache/

@@ -14,6 +14,6 @@ No se encontró un archivo LICENSE, COPYING o NOTICE en estas referencias ni en 
 
 `sources.json` conserva el SHA exacto y la referencia de cada importación. Los mensajes de commit identifican la fuente. Se mantienen los README originales dentro de cada aplicación.
 
-La rama actual `fin-seccion-6` de Dashboard apunta a una actualización posterior de dependencias (`ec656ef`), igual que `fin-seccion-06`. Se usó el commit histórico `a00d14c` ("Fin sección 6"), antecesor de la sección 7, para evitar introducir un retroceso de versiones al pasar a la sección 7.
+La rama actual `fin-seccion-6` de Dashboard apunta a una actualización posterior de dependencias (`ec656ef`), igual que `fin-seccion-06`. Al llegar a esa etapa, utilizar el commit histórico `a00d14c` ("Fin sección 6"), antecesor de la sección 7, para evitar introducir un retroceso de versiones al pasar a la sección 7.
 
 Hay más ramas disponibles: AdminTodos continúa hasta la sección 13 y Teslo hasta la 24, con algunas ramas de desarrollo. Esta colección se detiene en las referencias que se proporcionaron; no presenta las secciones 10–13 como completadas.
