@@ -1,0 +1,51 @@
+{
+  "section": 8,
+  "app": "my-dashboard",
+  "source_commit": "fdef385ce61fafb4abf026a69b3dfe7ae7d7f0d8",
+  "source_ref": "fin-seccion-8",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "status": "REUSED",
+      "reason": "Identical lockfile and existing installation from the immediately previous stage"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 5.9,
+      "log": "08-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 0,
+        "moderate": 6,
+        "high": 13,
+        "critical": 1,
+        "total": 20
+      }
+    },
+    "lint": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 5.1,
+      "log": "08-lint.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 1.9,
+      "log": "08-types.log"
+    },
+    "build": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 39.8,
+      "log": "08-build.log"
+    }
+  }
+}
