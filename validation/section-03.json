@@ -1,0 +1,51 @@
+{
+  "section": 3,
+  "app": "first-steps",
+  "source_commit": "303d8cc6908203367703479b62955b752f974327",
+  "source_ref": "fin-seccion-3",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "status": "REUSED",
+      "reason": "Identical lockfile and existing installation from the immediately previous stage"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 7.9,
+      "log": "03-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 0,
+        "moderate": 6,
+        "high": 13,
+        "critical": 1,
+        "total": 20
+      }
+    },
+    "lint": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 5.7,
+      "log": "03-lint.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 1.6,
+      "log": "03-types.log"
+    },
+    "build": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 29.4,
+      "log": "03-build.log"
+    }
+  }
+}

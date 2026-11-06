@@ -6,5 +6,13 @@
     "ref": "fin-seccion-2",
     "commit": "aba9a260f3379fd8a0552b7a54c500ba9f783673",
     "files_verified": 23
+  },
+  {
+    "section": 3,
+    "app": "first-steps",
+    "source": "https://github.com/Klerith/next-first-steps",
+    "ref": "fin-seccion-3",
+    "commit": "303d8cc6908203367703479b62955b752f974327",
+    "files_verified": 26
   }
 ]
