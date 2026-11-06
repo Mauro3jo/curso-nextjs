@@ -1,0 +1,61 @@
+{
+  "section": 18,
+  "app": "teslo-shop",
+  "source_commit": "eb95886a8ea1d1dc3a721cd998a1735f6a9b1722",
+  "source_ref": "fin-seccion-18",
+  "safety": {
+    "server_started": false,
+    "database_accessed": false,
+    "install_scripts_disabled": true,
+    "env_files_loaded": false,
+    "source_tree": "checked before commit"
+  },
+  "checks": {
+    "install": {
+      "status": "REUSED",
+      "reason": "Identical lockfile and existing installation from the immediately previous stage"
+    },
+    "audit": {
+      "exit_code": 1,
+      "status": "FAIL",
+      "seconds": 6.6,
+      "log": "18-audit.log",
+      "packages_by_severity": {
+        "info": 0,
+        "low": 1,
+        "moderate": 5,
+        "high": 11,
+        "critical": 2,
+        "total": 19
+      }
+    },
+    "lint": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 5.2,
+      "log": "18-lint.log"
+    },
+    "prisma_validate": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 0.5,
+      "log": "18-prisma-validate.log"
+    },
+    "prisma_generate": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 0.8,
+      "log": "18-prisma-generate.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 2.3,
+      "log": "18-types.log"
+    },
+    "build": {
+      "status": "NOT_RUN",
+      "reason": "Backend builds may evaluate routes and database queries. No database, seed, authentication or payment execution is authorized in this validation."
+    }
+  }
+}
