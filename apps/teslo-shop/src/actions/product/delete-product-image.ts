@@ -1,12 +1,18 @@
 'use server';
 
 import prisma from '@/lib/prisma';
+import { auth } from '@/auth.config';
 import {v2 as cloudinary} from 'cloudinary';
 import { revalidatePath } from 'next/cache';
 cloudinary.config( process.env.CLOUDINARY_URL ?? '' );
 
 
 export const deleteProductImage = async( imageId: number, imageUrl: string ) => {
+  const session = await auth();
+  if (session?.user?.role !== 'admin') {
+    return { ok: false, message: 'No autorizado' };
+  }
+
 
   if ( !imageUrl.startsWith('http') ) {
     return {
@@ -21,6 +27,10 @@ export const deleteProductImage = async( imageId: number, imageUrl: string ) => 
     ?.split('.')[0] ?? '';
 
   try {
+    const image = await prisma.productImage.findUnique({ where: { id: imageId } });
+    if (!image || image.url !== imageUrl) {
+      return { ok: false, message: 'Imagen no disponible' };
+    }
 
     await cloudinary.uploader.destroy( imageName );
     const deletedImage = await prisma.productImage.delete({

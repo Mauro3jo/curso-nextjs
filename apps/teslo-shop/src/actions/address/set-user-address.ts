@@ -2,8 +2,13 @@
 
 import type { Address } from "@/interfaces";
 import prisma from "@/lib/prisma";
+import { auth } from '@/auth.config';
 
 export const setUserAddress = async (address: Address, userId: string) => {
+  const session = await auth();
+  if (!session?.user?.id || session.user.id !== userId) {
+    return { ok: false, message: 'No autorizado' };
+  }
   try {
 
     const newAddress = await createOrReplaceAddress( address, userId );
@@ -25,7 +30,6 @@ export const setUserAddress = async (address: Address, userId: string) => {
 const createOrReplaceAddress = async (address: Address, userId: string) => {
   try {
 
-    console.log({ userId });
 
     const storedAddress = await prisma.userAddress.findUnique({
       where: { userId },
