@@ -1,11 +1,12 @@
-# Estado y siguiente trabajo
+# Estado del proyecto
 
-Se prepararon todas las etapas verificables en los repositorios proporcionados: secciones 2–24 y el cierre disponible de Teslo identificado como sección 25. El contenido permanece local, con cuatro aplicaciones independientes y un commit por sección.
+El proyecto esta publicado en [Mauro3jo/curso-nextjs](https://github.com/Mauro3jo/curso-nextjs), con cuatro aplicaciones independientes. La rama `fin-seccion-24` ya estaba integrada; el cierre del 2026-11-08 conserva las correcciones posteriores y agrega parches de acceso con sus pruebas.
 
-- Resultados de pruebas: [VALIDATION.md](VALIDATION.md).
-- Riesgos previos a ejecutar o desplegar: [SECURITY_REVIEW.md](SECURITY_REVIEW.md).
-- Atribución, referencias y permisos pendientes: [SOURCES.md](SOURCES.md).
+- Ejecucion local: [README.md](README.md).
+- Resultados y limites de las comprobaciones: [VALIDATION.md](VALIDATION.md).
+- Seguridad pendiente antes de desplegar: [SECURITY_REVIEW.md](SECURITY_REVIEW.md).
+- Fuentes y atribucion: [SOURCES.md](SOURCES.md).
 
-Siguiente trabajo: resolver los fallos documentados, actualizar dependencias y añadir controles de autorización en cambios separados del material de referencia; preparar bases nuevas y desechables para pruebas funcionales explícitas. No reutilizar datos existentes ni ejecutar semillas sin revisar su alcance.
+Las comprobaciones de codigo y los builds de ambos backends pasan sin servicios reales. Siguen pendientes actualizar dependencias y probar los flujos con PostgreSQL, autenticacion, navegador y proveedores reales. No se desplegaron aplicaciones ni se agrego un certificado.
 
-La historia progresiva se envía desde `main` a `Mauro3jo/curso-nextjs`, en el orden de los commits. La rama `referencia/importaciones-preparadas` es una referencia local anterior y queda fuera del envío. La atribución y la ausencia de una licencia explícita en las fuentes se documentan en `SOURCES.md`.
+Se publica solamente la historia progresiva de `main`. La rama `referencia/importaciones-preparadas` permanece como referencia local.

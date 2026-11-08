@@ -1,4 +1,29 @@
-# Validación por sección
+# Validacion del proyecto
+
+## Cierre del 2026-11-08
+
+La rama final solicitada `fin-seccion-24` sigue en `c702cbe0da86e7b38207ff5823c40ba01489dd58`. Su arbol de archivos coincide exactamente con el importado en `2db617e` (`073ca0c295f4854cd34f1654fa9fc6111522b53e`). El repositorio ya conservaba tambien las correcciones posteriores del instructor; no se duplico la importacion ni se crearon commits vacios.
+
+| Comprobacion del estado actual | Resultado |
+| --- | --- |
+| `npm test` | PASS: 37 pruebas; sesiones, persistencia y transportes simulados |
+| Lint de las cuatro aplicaciones | PASS |
+| TypeScript de ambos backends, en serie | PASS |
+| HTML generado de First Steps: cuatro rutas y enlaces activos | PASS |
+| Build de AdminTodos | PASS: 46.6 s |
+| Build final de Teslo | PASS: 43.5 s |
+| Integracion real de base de datos | NO EJECUTADA: motor Docker inactivo; no se inicio para compilar |
+| Navegador, OAuth real, PayPal y Cloudinary | NO EJECUTADOS: requieren sus entornos y credenciales |
+
+Los builds ejecutaron directamente el CLI de Next con telemetria deshabilitada, variables ficticias y `DATABASE_URL` apuntando a `127.0.0.1:1`. No se cargo un `.env` real. Pasaron compilacion, comprobacion de tipos y generacion de rutas. Esto no demuestra que los flujos con una base o proveedor real funcionen de extremo a extremo.
+
+Las pruebas nuevas reprodujeron fallos antes de sus parches: semilla HTTP destructiva, listado sin propietario, acciones sin autorizacion, respuestas de pago incompatibles, respuesta HTTP de error y un identificador de orden ausente. Despues de corregirlos, las 37 pruebas pasan.
+
+Una comprobacion intermedia de TypeScript se cruzo con un build que regeneraba `.next/types` y produjo TS6053 por archivos transitorios ausentes. Se repitio en serie, despues del build, y paso sin modificar la configuracion de tipos.
+
+No hubo despliegue, pagos, cargas de imagenes, migraciones, semillas ni acceso a una base externa. No se agrego certificado. Los avisos de dependencias siguen documentados en `SECURITY_REVIEW.md`.
+
+## Historial de importaciones del 2026-11-06
 
 Fecha: 2026-11-06. Entorno: Windows, Node.js 23.4.0 y npm 10.9.2. Estas versiones registran el entorno utilizado, no una recomendación de despliegue.
 

@@ -30,3 +30,7 @@ La página pública de Udemy confirmó el curso y parte de su temario. Los adjun
 ## Ajustes propios posteriores a las importaciones
 
 Un commit separado agrega comandos desde la raíz, puertos HTTP distintos, PostgreSQL en loopback con puertos y directorios independientes y plantillas de conexión actualizadas. También elimina las migraciones automáticas del build final de Teslo. Los commits de importación anteriores siguen coincidiendo exactamente con las fuentes; estos ajustes de integración se identifican aparte.
+
+## Revision de cierre del 2026-11-08
+
+Se verifico de nuevo `fin-seccion-24` contra GitHub: ya estaba integrada y se conservaron las correcciones posteriores. Los commits nuevos corrigen controles de sesion, propiedad y roles, bloquean la semilla HTTP, refuerzan la confirmacion de pagos y agregan sus pruebas. Son cambios locales posteriores al material de referencia, sin alterar los snapshots ni las fechas de los commits anteriores.

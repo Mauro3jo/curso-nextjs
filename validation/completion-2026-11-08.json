@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-08",
+  "source_branch": "DevTalles-corp/next-teslo-shop:fin-seccion-24",
+  "source_sha": "c702cbe0da86e7b38207ff5823c40ba01489dd58",
+  "import_commit": "2db617e",
+  "source_tree": "073ca0c295f4854cd34f1654fa9fc6111522b53e",
+  "source_already_integrated": true,
+  "tests": {
+    "command": "npm test",
+    "passed": 37,
+    "failed": 0,
+    "real_providers": false,
+    "real_database": false
+  },
+  "backend_builds": [
+    {
+      "app": "admin-todos",
+      "exit_code": 0,
+      "seconds": 46.6,
+      "log": "build-admin-todos-2026-11-08.log",
+      "database": "dummy URL on unused loopback port 1",
+      "migrations_or_seeds_executed": false
+    },
+    {
+      "app": "teslo-shop",
+      "exit_code": 0,
+      "seconds": 43.5,
+      "log": "build-teslo-shop-2026-11-08.log",
+      "database": "dummy URL on unused loopback port 1",
+      "migrations_or_seeds_executed": false
+    }
+  ],
+  "backend_typecheck": "PASS after serial execution; initial concurrent tsc/build generated transient TS6053 errors",
+  "docker_engine": "not running; no startup required for builds",
+  "migrations_executed": false,
+  "seeds_executed": false,
+  "payments_executed": false,
+  "deployment": false,
+  "certificate_added": false,
+  "lint": {
+    "first-steps": "PASS",
+    "my-dashboard": "PASS",
+    "admin-todos": "PASS",
+    "teslo-shop": "PASS"
+  },
+  "first_steps_generated_pages": "PASS: /, /about, /contact, /pricing and active links"
+}

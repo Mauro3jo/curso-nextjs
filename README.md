@@ -1,53 +1,52 @@
-# Next.js: proyectos del curso
+# Next.js Apps
 
-Ejercicios de Next.js del curso de Fernando Herrera y DevTalles, organizados en cuatro aplicaciones independientes y commits por sección.
+Cuatro aplicaciones independientes: un sitio con rutas y layouts, un dashboard de Pokémon, un gestor de tareas y una tienda con carrito y pedidos.
 
-| Aplicación | Secciones disponibles | Contenido |
-| --- | --- | --- |
-| `apps/first-steps` | 2–3 | Rutas, layouts, navegación y Docker |
-| `apps/my-dashboard` | 4–8 | Pokémon, renderizado, Redux y favoritos |
-| `apps/admin-todos` | 9–13 | API, Prisma, Server Actions, cookies y autenticación |
-| `apps/teslo-shop` | 14–25 | Catálogo, carrito, usuarios, pedidos, pagos y administración |
+| Aplicación | Carpeta | Inicio desde la raíz | Dirección |
+| --- | --- | --- | --- |
+| First Steps | `apps/first-steps` | `npm run dev:first-steps` | http://127.0.0.1:3001 |
+| Dashboard | `apps/my-dashboard` | `npm run dev:my-dashboard` | http://127.0.0.1:3002 |
+| AdminTodos | `apps/admin-todos` | `npm run dev:admin-todos` | http://127.0.0.1:3003 |
+| Teslo Shop | `apps/teslo-shop` | `npm run dev:teslo-shop` | http://127.0.0.1:3004 |
 
-Cada aplicación conserva sus dependencias, lockfile y configuración. First Steps de las secciones 2 y 3 es una misma aplicación en dos etapas. Las cuatro aplicaciones comparten el repositorio, pero no una base de datos ni una instalación de dependencias.
+Cada aplicación conserva sus dependencias y configuración. Dashboard incluye contador, favoritos y persistencia local; AdminTodos añade autenticación y tareas por usuario; Teslo reúne catálogo, direcciones, órdenes y administración de productos.
 
-## Recorrido
+## Ejecutar
 
-Cada commit de importación identifica la sección, el repositorio original y su SHA. `sources.json` permite localizar el punto de control exacto. Los commits registran importaciones y validaciones actuales; no reproducen fechas ni autoría de trabajo perdido en otro equipo.
-
-Se incorporaron las referencias disponibles de las secciones 2–24 y el `main` de Teslo posterior a la integración identificada como sección 25. No hay fuentes verificadas para las secciones 26 y 27 del temario actual. La introducción no tiene un proyecto independiente.
-
-## Validación
-
-Consultar [VALIDATION.md](VALIDATION.md) para los resultados por sección y [SECURITY_REVIEW.md](SECURITY_REVIEW.md) antes de ejecutar aplicaciones. Hay diferencias entre importar correctamente una etapa, pasar sus comprobaciones y poder desplegarla de forma segura.
-
-Las dependencias históricas tienen avisos de seguridad. No iniciar servidores accesibles ni desplegar estos snapshots sin corregir dependencias y autorización. Los builds con base de datos, los pagos y las semillas no se ejecutaron durante esta preparación.
-
-Para revisar First Steps, desde `apps/first-steps`:
+Necesitás Node.js y npm. Instalá las dependencias de la aplicación elegida; por ejemplo:
 
 ```sh
-npm ci --ignore-scripts
-npm run lint
-npm run build
+npm --prefix apps/first-steps ci --ignore-scripts
+npm run dev:first-steps
 ```
 
-Después del build, desde la raíz: `python scripts/check-static-pages.py`. El build puede descargar la fuente Inter. Los proyectos con Prisma necesitan preparación adicional; ver la revisión y los resultados por etapa antes de ejecutarlos.
+Para otra aplicación, cambiá la carpeta y usá su comando de la tabla.
 
-## Fuentes
+AdminTodos y Teslo también necesitan PostgreSQL. Desde la carpeta del backend, copiá `.env.template` a `.env`, revisá sus valores y prepará una **base local vacía**:
 
-Código de referencia de Fernando Herrera / DevTalles. Repositorios y decisiones de selección en [SOURCES.md](SOURCES.md). Se conservan los README originales de cada aplicación. No se asigna una nueva licencia al código del instructor.
+```sh
+cp .env.template .env
+docker compose --env-file .env up -d
+npx prisma migrate deploy
+npx prisma generate
+```
 
-Repositorio de prácticas: [Mauro3jo/curso-nextjs](https://github.com/Mauro3jo/curso-nextjs). Los puntos de control conservan la atribución a las fuentes originales y los cambios locales se registran en commits separados.
+AdminTodos usa el puerto 5433 y Teslo el 5434, con directorios de datos separados. Revisá `DATABASE_URL` antes de migrar. Las semillas reemplazan datos y no forman parte del arranque; la ruta HTTP de semilla de AdminTodos está deshabilitada.
 
-## Configuración local
+PayPal y Cloudinary requieren sus variables de entorno para habilitar esas integraciones. La validación de PayPal exige también `PAYPAL_MERCHANT_ID`. Guardá las credenciales únicamente en `.env`.
 
-Una vez resueltos los bloqueos de seguridad y preparadas las dependencias de cada aplicación, los comandos de la raíz usan puertos separados y escucha en loopback:
+## Comprobar
 
-| Aplicación | Comando | Puerto HTTP | PostgreSQL local |
-| --- | --- | --- | --- |
-| First Steps | `npm run dev:first-steps` | 3001 | No utiliza |
-| Dashboard | `npm run dev:my-dashboard` | 3002 | No utiliza |
-| AdminTodos | `npm run dev:admin-todos` | 3003 | 5433 |
-| Teslo | `npm run dev:teslo-shop` | 3004 | 5434 |
+Con las dependencias y los clientes Prisma de ambos backends preparados:
 
-Los Compose y las plantillas de conexión coinciden en esos puertos. Cada base usa su propio directorio de datos. El build final de Teslo genera Prisma y compila; las migraciones quedan separadas en `prisma:deploy`. La configuración se validó con `docker compose config`; no se iniciaron servicios ni se ejecutaron migraciones. Ver `validation/local-configuration.json`.
+```sh
+npm test
+npm run lint:admin-todos
+npm run lint:teslo-shop
+```
+
+Los resultados y las pruebas pendientes están en [VALIDATION.md](VALIDATION.md). Hay avisos de dependencias y límites de seguridad documentados en [SECURITY_REVIEW.md](SECURITY_REVIEW.md); revisalos antes de exponer las aplicaciones.
+
+## Créditos
+
+Basado en los ejemplos de Fernando Herrera y DevTalles. [SOURCES.md](SOURCES.md) conserva los repositorios, las referencias por sección y la atribución del material original. Las correcciones locales tienen commits separados.
