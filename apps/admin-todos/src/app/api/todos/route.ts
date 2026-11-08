@@ -5,20 +5,25 @@ import { NextResponse, NextRequest } from 'next/server'
 import * as yup from 'yup';
 
 export async function GET(request: Request) { 
+  const user = await getUserSessionServer();
+  if (!user?.id) {
+    return NextResponse.json({ message: 'No autorizado' }, { status: 401 });
+  }
   
   const { searchParams } = new URL(request.url)
   const take = Number( searchParams.get('take') ?? '10');
   const skip = Number( searchParams.get('skip') ?? '0');
 
-  if ( isNaN(take) ){ 
-    return NextResponse.json({ message: 'Take tiene que ser un número' }, { status: 400 });
+  if ( !Number.isSafeInteger(take) || take < 1 || take > 100 ){
+    return NextResponse.json({ message: 'Take debe ser un entero entre 1 y 100' }, { status: 400 });
   }
 
-  if ( isNaN(skip) ){ 
-    return NextResponse.json({ message: 'Skip tiene que ser un número' }, { status: 400 });
+  if ( !Number.isSafeInteger(skip) || skip < 0 ){
+    return NextResponse.json({ message: 'Skip debe ser un entero no negativo' }, { status: 400 });
   }
 
   const todos = await prisma.todo.findMany({
+    where: { userId: user.id },
     take: take,
     skip: skip,
   });
